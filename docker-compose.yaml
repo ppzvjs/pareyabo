@@ -11,6 +11,7 @@ services:
       - ./app:/var/www/html
     depends_on:
       - php
+      - db
   php:
     build:
       context: .
@@ -18,4 +19,21 @@ services:
       # Uncomment for Development
     volumes:
       - ./app:/var/www/html
+  db:
+    image: mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${DB_DATABASE}
+      MYSQL_USER: ${DB_USERNAME}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+    ports:
+      - '${DB_PORT}:3306'
+    healthcheck:
+      test: "exit 0"
+    volumes:
+      - db:/var/lib/mysql
+      - ./exportdb:/opt/exportdb
+volumes:
+  db:
 

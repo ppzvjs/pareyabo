@@ -5,3 +5,4 @@ app
 *.crt
 *.key
 .idea
+*.sql
