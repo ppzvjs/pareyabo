@@ -1,0 +1,7 @@
+app
+.env.local
+.env.test
+*.cert
+*.crt
+*.key
+.idea

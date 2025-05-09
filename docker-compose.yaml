@@ -1,0 +1,21 @@
+services:
+  server:
+    build:
+      context: .
+      dockerfile: nginx/Dockerfile
+    ports:
+      - '${HTTP_PORT}:80'
+      - '${HTTPS_PORT}:443'
+      # Uncomment for Development
+    volumes:
+      - ./app:/var/www/html
+    depends_on:
+      - php
+  php:
+    build:
+      context: .
+      dockerfile: dockerfiles/php.dockerfile
+      # Uncomment for Development
+    volumes:
+      - ./app:/var/www/html
+
